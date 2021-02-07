@@ -3,16 +3,13 @@
 #
 
 : ${3?"Usage: $0 hostname port nick"}
-HOST="$1"
-PORT="$2"
-NICK="$3"
 
 tmpdir="/tmp/tmp.ircc.$$"
 mkdir "$tmpdir"
 trap 'rm -rf "$tmpdir"' 0
 
-(echo user ircc hostname "$HOST" :irccirc user
-echo nick "$NICK" > "$tmpdir/responses"
+(echo user ircc hostname "$1" :ircc user
+echo nick "$3" > "$tmpdir/responses"
 tail -f "$tmpdir/responses" &
 while read command ; do
     case "$command" in
@@ -27,7 +24,7 @@ while read command ; do
             echo "PRIVMSG $currentchan :$command"
         ;;
     esac
-done) | nc "$HOST" "$PORT" | while read response ; do
+done) | nc "$1" "$2" | while read response ; do
     case "$response" in
         "PING "*)
              echo "PONG ${response#* }" >> "$tmpdir/responses"
