@@ -1,0 +1,39 @@
+#!/bin/sh
+# See LICENSE file for license details.
+#
+
+: ${3?"Usage: $0 hostname port nick"}
+HOST="$1"
+PORT="$2"
+NICK="$3"
+
+tmpdir="/tmp/tmp.ircc.$$"
+mkdir "$tmpdir"
+trap 'rm -rf "$tmpdir"' 0
+
+(echo user ircc hostname "$HOST" :irccirc user
+echo nick "$NICK" > "$tmpdir/responses"
+tail -f "$tmpdir/responses" &
+while read command ; do
+    case "$command" in
+        /join*)
+            currentchan="${command#* }"
+            echo "${command#/}" 2>/dev/null
+        ;;
+        /*)
+            echo "${command#/}" 2>/dev/null
+        ;;
+        *)
+            echo "PRIVMSG $currentchan :$command"
+        ;;
+    esac
+done) | nc "$HOST" "$PORT" | while read response ; do
+    case "$response" in
+        "PING "*)
+             echo "PONG ${response#* }" >> "$tmpdir/responses"
+        ;;
+        *)
+            echo "$response"
+        ;;
+    esac
+done

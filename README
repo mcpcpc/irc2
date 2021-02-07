@@ -1,0 +1,41 @@
+ircc - irc client
+
+A minimal viable POSIX shell solution for creating quick Internet Relay Chat
+(IRC) connections.
+
+Usage
+-----
+
+ircc [hostname] [port] [nickname]
+
+Requirements
+------------
+
+Not much. ircc was designed and tested using the Busybox tools, so it should
+work for a majority of environments.
+
+Installation
+------------
+
+From source:
+    git clone http://github.com/mcpcpc/ircc
+    cd ircc
+    sudo install -Dm755 ircc "/usr/bin"
+
+Examples
+--------
+
+To connect to a Freenode server:
+    ircc irc.freenode.net 6667 mcpcpc
+
+Once connected, you can specify a channel to join (using "/[command]"). Note that
+this will also set the default message channel:
+    /join #kirc
+
+To send a message to the recently joined channel, just type a message:
+    hello world!
+
+Contact
+-------
+
+For questions or issues, please contact info [at] mcpcpc [dot] com.
