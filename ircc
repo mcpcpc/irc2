@@ -1,17 +1,15 @@
 #!/bin/sh
 # See LICENSE file for license details.
 #
+# Usage: $0 hostname port nick
 
-: ${3?"Usage: $0 hostname port nick"}
+tmpfile="/tmp/$0.$$"
+initcmd="wait 1\nnick $3\nuser $3 8 * : $3"
+trap 'rm -rf "$tmpfile"' EXIT HUP INT
 
-tmpdir="/tmp/tmp.ircc.$$"
-mkdir "$tmpdir"
-trap 'rm -rf "$tmpdir"' 0
-
-(echo user ircc hostname "$1" :ircc user
-echo nick "$3" > "$tmpdir/responses"
-tail -f "$tmpdir/responses" &
-while read command ; do
+(echo -e "$initcmd" > "$tmpfile" &
+tail -f "$tmpfile" & 
+while read -r command ; do
     case "$command" in
         /join*)
             currentchan="${command#* }"
@@ -24,10 +22,10 @@ while read command ; do
             echo "PRIVMSG $currentchan :$command"
         ;;
     esac
-done) | nc "$1" "$2" | while read response ; do
+done) | nc "$1" "$2" | while read -r response ; do
     case "$response" in
         "PING "*)
-             echo "PONG ${response#* }" >> "$tmpdir/responses"
+            echo "PONG ${response#* }" >> "$tmpfile"
         ;;
         *)
             echo "$response"
