@@ -1,12 +1,11 @@
-#!/bin/sh -e
+#!/bin/sh
 # See LICENSE file for license details.
 #
-
-: "${3?"Usage: $0 hostname port nick"}"
+# Usage: $0 hostname port nick
 
 tmpfile="/tmp/$0.$$"
-initcmd="wait 1\nnick $3\nuser $3 8 x : $3"
-trap 'rm -rf "$tmpfile"' 0
+initcmd="wait 1\nnick $3\nuser $3 8 * : $3"
+trap 'rm -rf "$tmpfile"' EXIT HUP INT
 
 (echo -e "$initcmd" > "$tmpfile" &
 tail -f "$tmpfile" & 
