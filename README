@@ -34,7 +34,7 @@ To receive an alert if someone mentions your name:
 	irc2 | awk '/nickname/ {printf "\a"}1'
 
 To log your entire conversation history:
-	irc2 | tee -a irc2_history
+	script -a -c irc2 chat_log.txt
 
 Contact
 -------
