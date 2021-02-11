@@ -23,7 +23,7 @@ sudo install -Dm755 ircc "/usr/bin"
 Examples
 --------
 
-To connect to an Freenode IRC server:
+To connect to the Freenode IRC server:
 	irc2
 
 Once connected, you can specify a channel to join the using `/join`
