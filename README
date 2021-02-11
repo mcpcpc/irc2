@@ -1,8 +1,7 @@
 irc2 - a shell-based irc client
 
-A minimal solution for creating quick Internet Relay Chat (IRC) connections.
-Special thanks to aarng and all the users at the KISS Linux community for the
-feedback and suggestions.
+A minimal solution that uses netcat creating quick Internet Relay Chat
+(IRC) connections. 
 
 Usage
 -----
@@ -12,7 +11,7 @@ Usage: irc2 [<server>] [<port>] [<nick>] [<username>] [<realname>]
 Installation
 ------------
 
-git clone http://github.com/mcpcpc/ircc
+git clone http://github.com/mcpcpc/irc2
 cd ircc
 sudo install -Dm755 ircc "/usr/bin"
 
@@ -22,8 +21,8 @@ Examples
 To connect to a Freenode server:
 	irc2 irc.freenode.net 6667 mcpcpc
 
-Once connected, you can specify a channel to join (using "/[command]"). Note
-that this will also set the default message channel:
+Once connected, you can specify a channel to join (using "/[command]").
+Note that this will also set the default message channel:
 	/join #kisslinux
 
 To send a message to the recently joined channel, just type a message:
@@ -33,3 +32,9 @@ Contact
 -------
 
 For questions or issues, please contact info [at] mcpcpc [dot] com.
+
+Credit
+------
+Special thanks to aarng and all the users at the KISS Linux community for 
+the feedback and suggestions.
+
