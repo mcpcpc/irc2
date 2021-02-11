@@ -12,20 +12,19 @@ Usage: irc2 [<server>] [<port>] [<nick>] [<username>] [<realname>]
 Installation
 ------------
 
-From source:
-	git clone http://github.com/mcpcpc/ircc
-	cd ircc
-	sudo install -Dm755 ircc "/usr/bin"
+git clone http://github.com/mcpcpc/ircc
+cd ircc
+sudo install -Dm755 ircc "/usr/bin"
 
 Examples
 --------
 
 To connect to a Freenode server:
-	ircc irc.freenode.net 6667 mcpcpc
+	irc2 irc.freenode.net 6667 mcpcpc
 
 Once connected, you can specify a channel to join (using "/[command]"). Note that
 this will also set the default message channel:
-	/join #kirc
+	/join #kisslinux
 
 To send a message to the recently joined channel, just type a message:
 	hello world!
