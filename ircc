@@ -1,34 +1,39 @@
 #!/bin/sh
-# See LICENSE file for license details.
 #
-# Usage: $0 hostname port nick
+# Usage: $0 [<server>] [<port>] [<nick>] [<username>] [<realname>]
 
-tmpfile="/tmp/$0.$$"
-initcmd="wait 1\nnick $3\nuser $3 8 * : $3"
-trap 'rm -rf "$tmpfile"' EXIT HUP INT
+[ -z "$NCIRC" ] && {
+        NCIRC=1 exec \
+                nc "${1:-irc.freenode.org}" "${2:-6667}" -e "$0" "$@"
+}
 
-(echo -e "$initcmd" > "$tmpfile" &
-tail -f "$tmpfile" & 
-while read -r command ; do
-    case "$command" in
-        /join*)
-            currentchan="${command#* }"
-            echo "${command#/}" 2>/dev/null
-        ;;
-        /*)
-            echo "${command#/}" 2>/dev/null
-        ;;
-        *)
-            echo "PRIVMSG $currentchan :$command"
-        ;;
-    esac
-done) | nc "$1" "$2" | while read -r response ; do
-    case "$response" in
-        "PING "*)
-            echo "PONG ${response#* }" >> "$tmpfile"
-        ;;
-        *)
-            echo "$response"
-        ;;
-    esac
+trap 'kill 0' EXIT HUP INT
+
+printf 'NICK %s\r\n' "${nick:=${3:-$(id -un)}}"
+printf 'USER %s localhost * :%s\r\n' "${4:-$nick}" "${5:-$nick}"
+
+while IFS= read -r cmd; do
+        case $cmd in
+                /join*)
+                        curr=${cmd#* }
+                        printf '%s\r\n' "${cmd#/}"
+                ;;
+                /*)
+                        printf '%s\r\n' "${cmd#/}"
+                ;;
+                *)
+                        printf 'PRIVMSG %s :%s\r\n' "$curr" "$cmd"
+                ;;
+        esac
+done </dev/tty &
+
+while IFS= read -r line; do
+        case $line in
+                'PING '*)
+                        printf 'PONG %s\r\n' "${line#* }"
+                ;;
+                *)
+                        printf '%s\n' "$line" >/dev/tty
+                ;;
+        esac
 done
