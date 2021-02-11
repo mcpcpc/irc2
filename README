@@ -9,8 +9,9 @@ Usage
 Usage: irc2 [<server>] [<port>] [<nick>] [<username>] [<realname>]
 	<server> 	Overrides the default host (irc.freenode.net)
 	<port>		Overrides the default port (6667)
-	<nick>		Overrides the default nick ($())
-	<username>	
+	<nick>		Override the default nick ($(id -un))
+	<username>	Override the default user name ($nick)
+	<realname>	Override the users real name ($nick)
 
 Installation
 ------------
