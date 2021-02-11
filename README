@@ -1,12 +1,16 @@
 irc2 - a shell-based irc client
 
-A minimal solution that uses netcat creating quick Internet Relay Chat
-(IRC) connections. 
+A minimal solution that uses netcat for creating quick internet relay 
+chat client connections. 
 
 Usage
 -----
 
 Usage: irc2 [<server>] [<port>] [<nick>] [<username>] [<realname>]
+	server
+	port
+	nick
+	usernam
 
 Installation
 ------------
@@ -18,15 +22,19 @@ sudo install -Dm755 ircc "/usr/bin"
 Examples
 --------
 
-To connect to a Freenode server:
-	irc2 irc.freenode.net 6667 mcpcpc
+To connect to an Freenode IRC server:
+	irc2
 
-Once connected, you can specify a channel to join (using "/[command]").
-Note that this will also set the default message channel:
-	/join #kisslinux
+Once connected, you can specify a channel to join the using `/join` 
+command (e.g. (e.g. /join #kisslinux). Note that this will also set the 
+default message channel. To send a message to the recently joined 
+channel, just type a message (without the forward-slash character).
 
-To send a message to the recently joined channel, just type a message:
-	hello world!
+To receive an alert if someone mentions your name:
+	irc2 | awk '/nickname/ {printf "\a"}1'
+
+To log your entire conversation history:
+	irc2 | tee -a sic_history
 
 Contact
 -------
