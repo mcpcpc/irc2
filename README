@@ -1,7 +1,7 @@
 irc2 - a shell-based irc client
 
-A minimal solution that uses netcat for creating quick internet relay 
-chat client connections. 
+A minimal solution that uses netcat for creating quick internet 
+relay chat client connections. 
 
 Usage
 -----
@@ -25,8 +25,8 @@ Examples
 To connect to an Freenode IRC server:
 	irc2
 
-Once connected, you can specify a channel to join the using `/join` 
-command (e.g. /join #kisslinux). Note that this will also set the 
+Once connected, you can specify a channel to join the using `/join`
+command (e.g. /join #kisslinux). Note that this will also set the
 default message channel. To send a message to the recently joined 
 channel, just type a message (without the forward-slash character).
 
@@ -44,6 +44,7 @@ For questions or issues, please contact info [at] mcpcpc [dot] com.
 Credit
 ------
 
-I really can't take credit for this project as this was purely community
-driven. Special thanks to aarng (for showing we the ways of "-e") and all
-the users on the #kisslinux IRC channel for the feedback and suggestions.
+I really can't take credit for this project as this was purely 
+community driven. Special thanks to aarng (for showing we the ways 
+of "-e") and all the users on the #kisslinux IRC channel for the 
+feedback and suggestions.
