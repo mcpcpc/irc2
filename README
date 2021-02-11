@@ -1,39 +1,34 @@
-ircc - irc client
+irc2 - a shell-based irc client
 
-A minimal viable POSIX shell solution for creating quick Internet Relay Chat
-(IRC) connections.
+A minimal solution for creating quick Internet Relay Chat (IRC) connections.
+Special thanks to aarng and all the users at the KISS Linux community for the
+feedback and suggestions.
 
 Usage
 -----
 
-ircc [hostname] [port] [nickname]
-
-Requirements
-------------
-
-Not much. ircc was designed and tested using the Busybox tools, so it should
-work for a majority of environments.
+Usage: irc2 [<server>] [<port>] [<nick>] [<username>] [<realname>]
 
 Installation
 ------------
 
 From source:
-    git clone http://github.com/mcpcpc/ircc
-    cd ircc
-    sudo install -Dm755 ircc "/usr/bin"
+	git clone http://github.com/mcpcpc/ircc
+	cd ircc
+	sudo install -Dm755 ircc "/usr/bin"
 
 Examples
 --------
 
 To connect to a Freenode server:
-    ircc irc.freenode.net 6667 mcpcpc
+	ircc irc.freenode.net 6667 mcpcpc
 
 Once connected, you can specify a channel to join (using "/[command]"). Note that
 this will also set the default message channel:
-    /join #kirc
+	/join #kirc
 
 To send a message to the recently joined channel, just type a message:
-    hello world!
+	hello world!
 
 Contact
 -------
