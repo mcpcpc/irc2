@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Clearer examples of manipulating io-stream text and logging.
 ### Changed
 - Name of the project from ircc to irc2.
-- Handling functions (no longer piped).
+- Handling functions (e.g. no longer piped).
 
 ## [0.0.3] - 2021-02-09
 ### Changed
