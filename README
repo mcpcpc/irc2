@@ -26,7 +26,7 @@ To connect to an Freenode IRC server:
 	irc2
 
 Once connected, you can specify a channel to join the using `/join` 
-command (e.g. (e.g. /join #kisslinux). Note that this will also set the 
+command (e.g. /join #kisslinux). Note that this will also set the 
 default message channel. To send a message to the recently joined 
 channel, just type a message (without the forward-slash character).
 
