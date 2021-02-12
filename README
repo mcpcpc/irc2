@@ -20,29 +20,8 @@ git clone http://github.com/mcpcpc/irc2
 cd ircc
 sudo install -Dm755 ircc "/usr/bin"
 
-Examples
---------
-
-To connect to the Freenode IRC server:
-	irc2
-
-Once connected, you can specify a channel to join the using `/join`
-command (e.g. /join #kisslinux). Note that this will also set the
-default message channel. To send a message to the recently joined
-channel, just type a message (without the forward-slash character)
-
-To log your entire conversation history:
-	script -a -c irc2 chat_log.txt
 
 Contact
 -------
 
 For questions or issues, please contact info [at] mcpcpc [dot] com
-
-Credit
-------
-
-I really can't take credit for this project as this was purely
-community driven. Special thanks to aarng (for showing we the ways
-of "-e") and all the users on the #kisslinux IRC channel for the
-feedback and suggestions.
