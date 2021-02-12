@@ -1,7 +1,7 @@
-irc2 - a shell-based IRC client
+irc2 - a netcat-based IRC client
 
-A minimal solution that uses netcat for creating quick internet
-relay chat client connections.
+A minimal POSIX shell-based solution that uses netcat for creating 
+quick internet relay chat client connections.
 
 Usage
 -----
