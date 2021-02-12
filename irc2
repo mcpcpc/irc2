@@ -3,37 +3,36 @@
 # Usage: $0 [<server>] [<port>] [<nick>] [<username>] [<realname>]
 
 [ -z "$NCIRC" ] && {
-        NCIRC=1 exec \
-                nc "${1:-irc.freenode.org}" "${2:-6667}" -e "$0" "$@"
+	fd="/tmp/$0.$$"; rm -f "$fd"; mkfifo "$fd"
+	nc "${1:-irc.freenode.org}" "${2:-6667}" <"$fd" | NCIRC=1 exec "$0" "$@" >"$fd"
 }
 
 trap 'kill 0' EXIT HUP INT
-
 printf 'NICK %s\r\n' "${nick:=${3:-$(id -un)}}"
 printf 'USER %s localhost * :%s\r\n' "${4:-$nick}" "${5:-$nick}"
 
 while IFS= read -r cmd; do
-        case $cmd in
-                /join*)
-                        curr=${cmd#* }
-                        printf '%s\r\n' "${cmd#/}"
-                ;;
-                /*)
-                        printf '%s\r\n' "${cmd#/}"
-                ;;
-                *)
-                        printf 'PRIVMSG %s :%s\r\n' "$curr" "$cmd"
-                ;;
-        esac
+	case $cmd in
+		/join*)
+			curr=${cmd#* }
+			printf '%s\r\n' "${cmd#/}"
+		;;
+		/*)
+			printf '%s\r\n' "${cmd#/}"
+		;;
+		*)
+			printf 'PRIVMSG %s :%s\r\n' "$curr" "$cmd"
+		;;
+	esac
 done </dev/tty &
 
 while IFS= read -r line; do
-        case $line in
-                'PING '*)
-                        printf 'PONG %s\r\n' "${line#* }"
-                ;;
-                *)
-                        printf '%s\n' "$line" >/dev/tty
-                ;;
-        esac
+	case $line in
+		'PING '*)
+			printf 'PONG %s\r\n' "${line#* }"
+		;;
+		*)
+			printf '%s\n' "$line" >/dev/tty
+		;;
+	esac
 done

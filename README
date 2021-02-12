@@ -1,17 +1,17 @@
 irc2 - a shell-based IRC client
 
-A minimal solution that uses netcat for creating quick internet 
-relay chat client connections. 
+A minimal solution that uses netcat for creating quick internet
+relay chat client connections.
 
 Usage
 -----
 
 Usage: irc2 [<server>] [<port>] [<nick>] [<username>] [<realname>]
-	<server> 	Overrides the default host (irc.freenode.net)
-	<port>		Overrides the default port (6667)
-	<nick>		Override the default nick ($(id -un))
-	<username>	Override the default user name ($nick)
-	<realname>	Override the users real name ($nick)
+       server    Overrides the default host (irc.freenode.net)
+       port      Overrides the default port (6667)
+       nick      Override the default nick ($(id -un))
+       username  Override the default user name ($nick)
+       realname  Override the users real name ($nick)
 
 Installation
 ------------
@@ -28,11 +28,8 @@ To connect to the Freenode IRC server:
 
 Once connected, you can specify a channel to join the using `/join`
 command (e.g. /join #kisslinux). Note that this will also set the
-default message channel. To send a message to the recently joined 
-channel, just type a message (without the forward-slash character).
-
-To receive an alert if someone mentions your name:
-	irc2 | awk '/nickname/ {printf "\a"}1'
+default message channel. To send a message to the recently joined
+channel, just type a message (without the forward-slash character)
 
 To log your entire conversation history:
 	script -a -c irc2 chat_log.txt
@@ -40,12 +37,12 @@ To log your entire conversation history:
 Contact
 -------
 
-For questions or issues, please contact info [at] mcpcpc [dot] com.
+For questions or issues, please contact info [at] mcpcpc [dot] com
 
 Credit
 ------
 
-I really can't take credit for this project as this was purely 
-community driven. Special thanks to aarng (for showing we the ways 
-of "-e") and all the users on the #kisslinux IRC channel for the 
+I really can't take credit for this project as this was purely
+community driven. Special thanks to aarng (for showing we the ways
+of "-e") and all the users on the #kisslinux IRC channel for the
 feedback and suggestions.
