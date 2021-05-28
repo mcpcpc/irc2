@@ -4,7 +4,7 @@
 
 [ -z "$NCIRC" ] && {
 	fd="/tmp/.irc2"; rm -f "$fd"; mkfifo "$fd"
-	nc "${1:-irc.freenode.org}" "${2:-6667}" <"$fd" | \
+	nc "${1:-irc.libera.chat}" "${2:-6667}" <"$fd" | \
 		NCIRC=1 exec "$0" "$@" >"$fd"
 }
 
