@@ -7,7 +7,7 @@ Usage
 -----
 
 Usage: irc2 [<server>] [<port>] [<nick>] [<username>] [<realname>]
-       server    Overrides the default host (irc.freenode.net)
+       server    Overrides the default host (irc.libera.chat)
        port      Overrides the default port (6667)
        nick      Override the default nick ($(id -un))
        username  Override the default user name ($nick)
